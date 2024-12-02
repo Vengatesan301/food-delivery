@@ -19,11 +19,12 @@ const RestaurantMenu = () => {
 
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
-
+    const isMobile = window.innerWidth <= 768; // Define mobile view size (you can adjust this threshold)
+    const cardIndex = isMobile ? 5 : 4;
  
 
   const categories =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.cards[cardIndex]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"

@@ -22,14 +22,14 @@ const RestaurantCard = (props) => {
     return () => clearTimeout(timer); // Cleanup timer
   }, []);
 
-  if (loading) {
-    // Show loading spinner when `loading` is true
-    return (
-      <div className="flex justify-center items-center h-64">
-        <Spin size="large" tip="Loading..." />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   // Show loading spinner when `loading` is true
+  //   return (
+  //     <div className="flex justify-center items-center h-64">
+  //       <Spin size="large" tip="Loading..." />
+  //     </div>
+  //   );
+  // }
 
   const {
     cloudinaryImageId,

@@ -1,6 +1,6 @@
 import RestaurantCard, { withPromtedLabel } from "./RestaurantCard";
 import { useState, useEffect, useContext } from "react";
-import Shimmer from "./Shimmer";
+// import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
@@ -18,19 +18,41 @@ const Body = () => {
     fetchData();
   }, []);
 
+  // const fetchData = async () => {
+  //   const data = await fetch(
+  //     "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.1197626&lng=80.1904968&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  //   );
+
+  //   const json = await data.json();
+  //   setListOfRestaurants(
+  //     json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  //   );
+  //   setFilteredRestaurant(
+  //     json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  //   );
+
+
+  // };
+
+
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.1197626&lng=80.1904968&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
-
+  
     const json = await data.json();
-    setListOfRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+  
+    const isMobile = window.innerWidth <= 768; 
+    const cardIndex = isMobile ? 2 : 1; 
+  
+    const restaurants = json?.data?.cards[cardIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+  
+   
+    setListOfRestaurants(restaurants);
+    setFilteredRestaurant(restaurants);
   };
+  
+  console.log(filteredRestaurant,listOfRestaurants,"reeeeee")
 
   const onlineStatus = useOnlineStatus();
 
@@ -44,7 +66,8 @@ const Body = () => {
   const { loggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurants?.length === 0 ? (
-    <Shimmer />
+    // <Shimmer />
+    <></>
   ) : (
     <div className="body p-6 bg-gray-50">
       {/* Header Section */}
@@ -152,3 +175,12 @@ const Body = () => {
 
 
 export default Body;
+
+
+
+
+
+
+
+
+
