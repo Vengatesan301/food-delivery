@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestrauntMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
+import useIsMobile from "../utils/useIsMobile";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const dummy = "Dummy Data";
+  const isMobile = useIsMobile();
+const cardIndex = isMobile ? 5 : 4;
 
   const resInfo = useRestaurantMenu(resId);
 
@@ -19,8 +22,8 @@ const RestaurantMenu = () => {
 
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
-    const isMobile = window.innerWidth <= 768; // Define mobile view size (you can adjust this threshold)
-    const cardIndex = isMobile ? 5 : 4;
+    // const isMobile = window.innerWidth <= 768; // Define mobile view size (you can adjust this threshold)
+    // const cardIndex = isMobile ? 5 : 4;
  
 
   const categories =

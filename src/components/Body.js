@@ -42,28 +42,49 @@ let API_URL = "https://food-delivery-backend-eerj.onrender.com"
 //let API_URL="http://localhost:5000"
 
 
-  const fetchData = async () => {
-    // const data = await fetch(
-    //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.1197626&lng=80.1904968&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    // );
+  // const fetchData = async () => {
+  //   // const data = await fetch(
+  //   //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.1197626&lng=80.1904968&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  //   // );
    
-    const data = await fetch(
-      `${API_URL}/api/restaurants?lat=13.1197626&lng=80.1904968`
-    );
+  //   const data = await fetch(
+  //     `${API_URL}/api/restaurants?lat=13.1197626&lng=80.1904968`
+  //   );
   
-    const json = await data.json();
+  //   const json = await data.json();
 
-    console.log(json?.data,"0000")
+  //   console.log(json?.data,"0000")
   
-    const isMobile = window.innerWidth <= 768; 
-    const cardIndex = isMobile ? 4 : 1; 
+  //   const isMobile = window.innerWidth <= 768; 
+  //   const cardIndex = isMobile ? 4 : 1; 
   
-    const restaurants = json?.data?.cards[cardIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+  //   const restaurants = json?.data?.cards[cardIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
   
    
-    setListOfRestaurants(restaurants);
-    setFilteredRestaurant(restaurants);
+  //   setListOfRestaurants(restaurants);
+  //   setFilteredRestaurant(restaurants);
+  // };
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${API_URL}/api/restaurants?lat=${lat}&lng=${lng}`);
+      if (!response.ok) throw new Error("Failed to fetch restaurant list");
+      const json = await response.json();
+      
+      const isMobile = window.innerWidth <= 768; 
+      const cardIndex = isMobile ? 4 : 1; 
+      
+      const restaurants = json?.data?.cards[cardIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+  
+      setListOfRestaurants(restaurants || []);
+      setFilteredRestaurant(restaurants || []);
+    } catch (error) {
+      console.error("Error fetching restaurant data:", error);
+      setListOfRestaurants([]);
+      setFilteredRestaurant([]);
+    }
   };
+  
   
   console.log(filteredRestaurant,listOfRestaurants,"reeeeee")
 
