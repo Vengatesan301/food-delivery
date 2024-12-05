@@ -13,8 +13,8 @@ const useRestaurantMenu = (resId) => {
   //   const json = await data.json();
   //   setResInfo(json.data);
   // };
-  //let MENU_API = "https://food-delivery-backend-eerj.onrender.com/api/menu"
-  let MENU_API="http://localhost:5000/api/menu/"
+  let MENU_API = "https://food-delivery-backend-eerj.onrender.com/api/menu"
+  //let MENU_API="http://localhost:5000/api/menu/"
 
   const fetchData = async () => {
     try {
