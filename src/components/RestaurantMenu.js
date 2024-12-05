@@ -10,7 +10,7 @@ const RestaurantMenu = () => {
 
   const dummy = "Dummy Data";
   const isMobile = useIsMobile();
-const cardIndex = isMobile ? 5 : 4;
+const cardIndex = isMobile ? 4 : 5;
 
   const resInfo = useRestaurantMenu(resId);
 
