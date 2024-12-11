@@ -72,10 +72,11 @@ let API_URL = "https://food-delivery-backend-eerj.onrender.com"
       const json = await response.json();
       
       const isMobile = window.innerWidth <= 768; 
-      const cardIndex = isMobile ? 4 : 1; 
+      const cardIndex = isMobile ? 1 : 1; 
+      console.log(json?.data,"uuuuuii")
       
       const restaurants = json?.data?.cards[cardIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  
+      
       setListOfRestaurants(restaurants || []);
       setFilteredRestaurant(restaurants || []);
     } catch (error) {
