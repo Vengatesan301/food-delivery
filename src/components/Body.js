@@ -11,59 +11,23 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [lat, setLat] = useState(13.1197626); // Default latitude
+  const [loading, setLoading] = useState(true); // Add loading state
+  const [lat, setLat] = useState(13.1197626); 
   const [lng, setLng] = useState(80.1904968);
 
   const RestaurantCardPromoted = withPromtedLabel(RestaurantCard);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+ 
   useEffect(() => {
     fetchData();
   }, [lat, lng]);
 
-  // const fetchData = async () => {
-  //   const data = await fetch(
-  //     "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.1197626&lng=80.1904968&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-  //   );
 
-  //   const json = await data.json();
-  //   setListOfRestaurants(
-  //     json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //   );
-  //   setFilteredRestaurant(
-  //     json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //   );
-
-
-  // };
 let API_URL = "https://food-delivery-backend-eerj.onrender.com"
 //let API_URL="http://localhost:5000"
 
 
-  // const fetchData = async () => {
-  //   // const data = await fetch(
-  //   //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.1197626&lng=80.1904968&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-  //   // );
-   
-  //   const data = await fetch(
-  //     `${API_URL}/api/restaurants?lat=13.1197626&lng=80.1904968`
-  //   );
-  
-  //   const json = await data.json();
-
-  //   console.log(json?.data,"0000")
-  
-  //   const isMobile = window.innerWidth <= 768; 
-  //   const cardIndex = isMobile ? 4 : 1; 
-  
-  //   const restaurants = json?.data?.cards[cardIndex]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  
-   
-  //   setListOfRestaurants(restaurants);
-  //   setFilteredRestaurant(restaurants);
-  // };
+ 
 
   const fetchData = async () => {
     try {
@@ -83,6 +47,8 @@ let API_URL = "https://food-delivery-backend-eerj.onrender.com"
       console.error("Error fetching restaurant data:", error);
       setListOfRestaurants([]);
       setFilteredRestaurant([]);
+    }finally {
+      setLoading(false); // Set loading to false after fetching
     }
   };
   
@@ -99,8 +65,9 @@ let API_URL = "https://food-delivery-backend-eerj.onrender.com"
     );
 
   const { loggedInUser, setUserName } = useContext(UserContext);
+ 
 
-  return listOfRestaurants?.length === 0 ? (
+  return loading ? (
     <Shimmer />
    
   ) : (

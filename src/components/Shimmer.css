@@ -1,0 +1,42 @@
+/* Container for shimmer cards */
+.shimmer-container {
+    display: grid; /* Grid layout for flexibility */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive column sizes */
+    gap: 16px; /* Space between shimmer cards */
+    padding: 16px; /* Padding around the grid */
+  }
+  
+  /* Individual shimmer card */
+  .shimmer-card {
+    width: 100%; /* Fill parent container */
+    height: 200px; /* Fixed height for shimmer cards */
+    border-radius: 8px; /* Rounded corners */
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer-animation 1.5s infinite;
+  }
+  
+  /* Shimmer animation */
+  @keyframes shimmer-animation {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+  /* Mobile-specific styles (for smaller viewports) */
+  @media (max-width: 768px) {
+    .shimmer-card {
+      height: 150px; /* Reduce height for mobile */
+    }
+  }
+  
+  /* Additional responsiveness for very small screens */
+  @media (max-width: 480px) {
+    .shimmer-card {
+      height: 120px; /* Further reduce height */
+    }
+  }
+  
