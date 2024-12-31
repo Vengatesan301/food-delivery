@@ -27,7 +27,7 @@ const cardIndex = isMobile ? 4 : 5;
  
 
   const categories =
-    resInfo?.cards[cardIndex]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
