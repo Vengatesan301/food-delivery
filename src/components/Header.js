@@ -63,7 +63,7 @@ const Header = () => {
     <li>
       <Link
         className="hover:text-yellow-200 hover:underline block pr-2"
-        to="/home"
+        to="/"
         onClick={() => setIsMobileMenuOpen(false)} // Close the menu on click
       >
         Home
