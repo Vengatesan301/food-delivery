@@ -11,6 +11,7 @@ const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
+  const [check,setCheck] = useState("")
 
  
   const cartItems = useSelector((store) => store.cart.items);
@@ -64,7 +65,7 @@ const Header = () => {
       <Link
         className="hover:text-yellow-200 hover:underline block pr-2"
         to="/"
-        onClick={() => setIsMobileMenuOpen(false)} // Close the menu on click
+        onClick={() => setIsMobileMenuOpen(false)} 
       >
         Home
       </Link>
@@ -73,7 +74,7 @@ const Header = () => {
       <Link
         className="hover:text-yellow-200 hover:underline block pr-2"
         to="/about"
-        onClick={() => setIsMobileMenuOpen(false)} // Close the menu on click
+        onClick={() => setIsMobileMenuOpen(false)}
       >
         About Us
       </Link>
